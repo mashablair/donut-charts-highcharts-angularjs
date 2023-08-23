@@ -5,28 +5,90 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AngularJS Donut Chart with Highcharts</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.js"></script>
-  <script src="app.js"></script>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .chart-wrapper {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .chart-container {
+      flex: 1;
+      display: flex;
+      overflow-x: auto;
+      width: 100%;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 50%;
+    }
+
+
+    .chart-item {
+      flex: 0 0 50%;
+      /* this ensures that only two charts take up the full width of the container */
+      scroll-snap-align: start;
+      /* this aligns the charts during scrolling */
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      /* This will vertically center the arrows */
+      z-index: 1;
+      /* Ensure buttons are above other elements */
+      background-color: rgba(255, 255, 255, 0.7);
+      border: none;
+      font-size: 1.5em;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .nav-arrow:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    #scrollLeft {
+      left: 10px;
+    }
+
+    #scrollRight {
+      right: 10px;
+    }
+  </style>
+
 </head>
 
 <body ng-app="myApp" ng-controller="DonutChartController">
 
-  <h1>Hello from Highcharts!</h1>
+  <h1>Tenants</h1>
 
-  <app-kpi-tile data-is-active="model.kpiTilesByType[kpiTile.type].value != undefined"
-    data-is-loading="model.areChartsLoading" class="ng-isolate-scope">
-    <div id="donutChart1" style="height: 250px;"></div>
-    <div id="donutChart2" style="height: 250px; margin-top: 20px;"></div>
-    <div id="donutChart3" style="height: 250px; margin-top: 20px;"></div>
-  </app-kpi-tile>
+  <div class="chart-wrapper">
+    <div class="chart-container">
+      <div ng-repeat="chart in charts" class="chart-item">
+        <div id="{{chart.id}}" style="height: 250px;"></div>
+      </div>
+    </div>
+    <button id="scrollLeft" class="nav-arrow" ng-click="scrollLeft()" ng-show="showLeftButton">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button id="scrollRight" class="nav-arrow" ng-click="scrollRight()" ng-show="showRightButton">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
 
   <div ng-if="selectedData">
     <h2>Selected Data:</h2>
@@ -35,6 +97,14 @@
   </div>
 
 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>

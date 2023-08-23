@@ -1,0 +1,12 @@
+/* .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+app-kpi-tile {
+  flex: 1;
+  max-width: 49%;
+  box-sizing: border-box;
+  border: 1px dotted;
+} */
