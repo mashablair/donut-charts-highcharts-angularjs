@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AngularJS Donut Chart with Highcharts</title>
+
+  <!-- Example CDN links (ensure you have the right version and dependencies) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.js"></script>
+
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <script src="app.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="DonutChartController">
+
+  <h1>Hello from Highcharts!</h1>
+
+  <app-kpi-tile data-is-active="model.kpiTilesByType[kpiTile.type].value != undefined"
+    data-is-loading="model.areChartsLoading" class="ng-isolate-scope">
+
+    <div id="donutChart1" style="height: 250px;"></div>
+    <div id="donutChart2" style="height: 250px; margin-top: 20px;"></div>
+    <div id="donutChart3" style="height: 250px; margin-top: 20px;"></div>
+
+  </app-kpi-tile>
+
+
+
+
+
+  <div class="highcharts-a11y-proxy-group highcharts-a11y-proxy-group-legend"
+    aria-label="Toggle series visibility, Tenants By Lease Expiration" role="region">
+    <ul role="list">
+      <li style="list-style: none;"><button class="highcharts-a11y-proxy-button" aria-label="Show Month to month"
+          tabindex="-1" aria-pressed="true"
+          style="border-width: 0px; background-color: transparent; cursor: pointer; outline: none; opacity: 0.001; z-index: 999; overflow: hidden; padding: 0px; margin: 0px; display: block; position: absolute; width: 107.906px; height: 14.5455px; left: 716px; top: 87px;"></button>
+      </li>
+      <!-- other li elements here -->
+    </ul>
+  </div>
+
+</body>
+
+</html>
