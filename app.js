@@ -19,6 +19,14 @@ angular
               enabled: true,
             },
             showInLegend: true, // This line will show pie slices in the legend
+            point: {
+              events: {
+                click: function () {
+                  $scope.selectedData = this;
+                  $scope.$apply(); // Inform AngularJS of the update
+                },
+              },
+            },
           },
         },
         legend: {
